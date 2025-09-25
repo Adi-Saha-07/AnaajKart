@@ -436,3 +436,63 @@ const ALL_PRODUCTS = [
     if (e.key === 'Enter') productSearchBtn.click();
   });
 });
+const input = document.getElementById("productSearchInput");
+  const results = document.getElementById("productResults");
+
+  // 🔍 Search button click
+  document.getElementById("productSearchBtn").addEventListener("click", () => {
+    const query = input.value.trim();
+    results.innerHTML = query ? `<p>Searching for: <b>${query}</b></p>` : `<p>Please enter a product name.</p>`;
+  });
+
+  // 🎤 Voice search
+  document.querySelector(".voice-btn").addEventListener("click", () => {
+    if (!("webkitSpeechRecognition" in window)) {
+      alert("Voice search not supported in this browser.");
+      return;
+    }
+    const recognition = new webkitSpeechRecognition();
+    recognition.lang = "en-IN"; // Hindi ke liye "hi-IN"
+    recognition.start();
+
+    recognition.onresult = (event) => {
+      const speech = event.results[0][0].transcript;
+      input.value = speech;
+      results.innerHTML = `<p>Voice Search: <b>${speech}</b></p>`;
+    };
+  });
+
+  // 📷 Camera button
+  document.querySelector(".scan-btn").addEventListener("click", () => {
+    document.getElementById("cameraInput").click();
+  });
+
+  document.getElementById("cameraInput").addEventListener("change", (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      results.innerHTML = `<p>Image selected: <b>${file.name}</b></p>`;
+    }
+  });
+  // 🌙 Theme Toggle
+const themeToggle = document.getElementById("themeToggle");
+const body = document.body;
+
+// Check saved mode
+if (localStorage.getItem("theme") === "dark") {
+  body.classList.add("dark-mode");
+} else {
+  body.classList.add("light-mode");
+}
+
+// Toggle on click
+themeToggle.addEventListener("click", () => {
+  if (body.classList.contains("dark-mode")) {
+    body.classList.replace("dark-mode", "light-mode");
+    localStorage.setItem("theme", "light");
+    themeToggle.textContent = "🌙";
+  } else {
+    body.classList.replace("light-mode", "dark-mode");
+    localStorage.setItem("theme", "dark");
+    themeToggle.textContent = "☀️";
+  }
+});
