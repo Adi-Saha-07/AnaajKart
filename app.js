@@ -80,14 +80,14 @@ function particles() {
 // ---------------------------
 // Plants / Catalog
 // ---------------------------
-const PLANTS = [
-  { id: 1, name: 'Snake Plant', img: 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?q=80&w=800&auto=format&fit=crop' },
-  { id: 2, name: 'Monstera',  img: 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?q=80&w=800&auto=format&fit=crop' },
-  { id: 3, name: 'Areca Palm', img: 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?q=80&w=800&auto=format&fit=crop' },
-  { id: 4, name: 'Aloe Vera', img: 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?q=80&w=800&auto=format&fit=crop' },
-  { id: 5, name: 'ZZ Plant', img: 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?q=80&w=800&auto=format&fit=crop' },
-  { id: 6, name: 'Peace Lily', img: 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?q=80&w=800&auto=format&fit=crop' },
-];
+// const PLANTS = [
+//   { id: 1, name: 'Snake Plant', img: 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?q=80&w=800&auto=format&fit=crop' },
+//   { id: 2, name: 'Monstera',  img: 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?q=80&w=800&auto=format&fit=crop' },
+//   { id: 3, name: 'Areca Palm', img: 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?q=80&w=800&auto=format&fit=crop' },
+//   { id: 4, name: 'Aloe Vera', img: 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?q=80&w=800&auto=format&fit=crop' },
+//   { id: 5, name: 'ZZ Plant', img: 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?q=80&w=800&auto=format&fit=crop' },
+//   { id: 6, name: 'Peace Lily', img: 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?q=80&w=800&auto=format&fit=crop' },
+// ];
 
 function renderCatalog() {
   const track = document.getElementById('plantCarouselTrack');
