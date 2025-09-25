@@ -160,6 +160,7 @@ main {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  font-size: 2.4rem;
 }
 .hero-copy p {
   opacity: 0.85;
@@ -769,7 +770,7 @@ main {
   background: #48e894;
 }
 /* Section styling */
-#storeSearch {
+/* #storeSearch {
   padding: 2rem;
 }
 
@@ -798,10 +799,119 @@ main {
 
 #productSearchBtn:hover {
 background: linear-gradient(135deg, #8aac8d, #032c04);
+} */
+
+/* Section container */
+.route#storeSearch {
+  padding: 2rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+  max-width: 700px;
+  margin: 2rem auto;
+  font-family: "Segoe UI", sans-serif;
 }
 
+/* Title */
+#storeSearch .section-title {
+  text-align: center;
+  font-size: 1.6rem;
+  color: #1e293b;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
 
-/* Product Card */
+/* Search bar container */
+#storeSearch .search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Input */
+#storeSearch #productSearchInput {
+  width: 100%;
+  padding: 0.9rem 3.5rem 0.9rem 1rem;
+  border: 1.8px solid #cbd5e1;
+  border-radius: 50px;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s;
+  background: #fff;
+}
+
+#storeSearch #productSearchInput:focus {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 8px rgba(14,165,233,0.2);
+}
+
+/* Generic button style */
+#storeSearch button {
+  position: absolute;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #475569;
+  transition: 0.3s;
+}
+
+/* Search button (inside input) */
+#storeSearch #productSearchBtn {
+  right: 0.7rem;
+}
+
+/* Voice button */
+#storeSearch .voice-btn {
+  right: 3rem;
+}
+
+/* Camera button */
+#storeSearch .scan-btn {
+  right: 5.3rem;
+}
+
+/* Hover effect */
+#storeSearch button:hover {
+  color: #0ea5e9;
+}
+
+/* Product results */
+#storeSearch #productResults {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 1rem;
+  color: #475569;
+}
+/* All buttons with PNG icons */
+#storeSearch button {
+  position: absolute;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+#storeSearch button img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  filter: grayscale(30%);
+  transition: 0.3s;
+}
+
+#storeSearch button:hover img {
+  filter: grayscale(0%) brightness(1.1);
+}
+
+/* Button positions */
+#storeSearch #productSearchBtn { right: 0.7rem; }
+#storeSearch .voice-btn { right: 3rem; }
+#storeSearch .scan-btn { right: 5.3rem; }
+
+
 .product-card {
   display: flex;
   justify-content: space-between;
@@ -891,4 +1001,58 @@ background: linear-gradient(135deg, #8aac8d, #032c04);
 .product-actions .details-btn:hover {
   background-color: #fbc02d;
   transform: scale(1.05);
+}
+/* Theme Toggle Button */
+.theme-toggle {
+  margin-left: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: rotate(20deg) scale(1.2);
+}
+
+/* 🌞 Light Mode (default) */
+body.light-mode {
+  background: #f9f9f9;
+  color: #222;
+}
+
+body.light-mode .nav {
+  background: #ffffffd9;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+body.light-mode .form.glass {
+  background: rgba(255,255,255,0.8);
+  color: #222;
+}
+
+/* 🌙 Dark Mode */
+body.dark-mode {
+  background: #121212;
+  color: #f1f1f1;
+}
+
+body.dark-mode .nav {
+  background: #1e1e1ed9;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .form.glass {
+  background: rgba(30,30,30,0.8);
+  color: #f1f1f1;
+}
+
+/* Button icon change */
+body.light-mode #themeToggle {
+  content: "🌙";
+}
+
+body.dark-mode #themeToggle {
+  content: "☀️";
 }
