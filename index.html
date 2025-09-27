@@ -8,36 +8,82 @@
   <link rel="stylesheet" href="styles.css">
   <!-- <meta name="description" content="Zomato-style plant delivery website for hackathon. Beautiful animations, user login, signup, delivery and store registration."> -->
 </head>
-<body class="dark-mode">
-<!-- <body> -->
+<!-- <body class="dark-mode"> -->
+<body class="light-mode">
   <canvas id="bg"></canvas>
   <header class="nav">
     <div class="logo" onclick="Router.go('home')">
-      <svg viewBox="0 0 64 64" aria-hidden="true" class="leaf"><path d="M52 6C30 6 12 24 12 46c0 6 2 12 6 16C42 62 58 42 58 22c0-6-2-12-6-16Z" /></svg>
+      <img src="anaajkartremovebg.png" alt="Anaajkart Logo" class="leaf">
       <span>Anaajkart</span>
     </div>
 <nav id="navbar">
   <div class="nav-buttons">
-    <!-- Dark/Light Mode Toggle -->
+
     <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">🌙</button>
 
-    <!-- 3 Line Menu -->
+
     <button class="menu-toggle" id="menuToggle">☰</button>
   </div>
 
-  <!-- Sidebar Links -->
   <div class="links">
-    <a href="#home" data-route="home">Home</a>
-    <a href="#about" data-route="about">About Us</a>
-    <a href="#contact" data-route="contact">Contact</a>
-    <a href="#login" data-route="login" class="guestOnly">Login</a>
-    <a href="#signup" data-route="signup" class="guestOnly">Sign Up</a>
-    <a href="#store" data-route="store" class="guestOnly">Store Register</a>
-    <a href="#profile" data-route="profile" class="authOnly" style="display:none;">Profile</a>
+    <a href="index.html" data-route="home">Home</a>
+    <a href="about.html" data-route="about">About Us</a>
+    <a href="contact.html" data-route="contact">Contact</a>
+    <a href="login.html" data-route="login" class="guestOnly">Login</a>
+    <a href="signup.html" data-route="signup" class="guestOnly">Sign Up</a>
+    <a href="store.html" data-route="store" class="guestOnly">Store Register</a>
+    <a href="profile.html" data-route="profile" class="authOnly" style="display:none;">Profile</a>
   </div>
 </nav>
 
   </header>
+    <div class="carousel-container">
+        <div class="carousel-slide active">
+            <div class="slide-content">
+                <img src="anaajkartremovebg.png" alt="Aashirvaad Logo" class="slide-logo">
+                <h1 class="slide-title">The Aashirvaad Promise</h1>
+                <p class="slide-text">
+                    Hand-picked ingredients, careful processing and untouched packaging ensuring superior quality.
+                </p>
+                <a href="#" class="explore-button">Click to Explore</a>
+            </div>
+            <img src="img1.png" alt="Aashirvaad Promise" class="slide-image">
+        </div>
+
+        <div class="carousel-slide">
+            <div class="slide-content">
+                <img src="anaajkartremovebg.png" alt="Anaajkart Logo" class="slide-logo">
+                <h1 class="slide-title">Healthy & Fresh</h1>
+                <p class="slide-text">
+                    We bring the finest grains directly from the farm to your table, ensuring maximum freshness.
+                </p>
+                <a href="#" class="explore-button">Click to Explore</a>
+            </div>
+            <img src="img2.png" alt="Second Slide" class="slide-image">
+        </div>
+
+        <div class="carousel-slide">
+            <div class="slide-content">
+                <img src="anaajkartremovebg.png" alt="Anaajkart Logo" class="slide-logo">
+                <h1 class="slide-title">Trusted Quality</h1>
+                <p class="slide-text">
+                    Our products undergo strict quality checks to meet the highest standards of purity.
+                </p>
+                <a href="#" class="explore-button">Click to Explore</a>
+            </div>
+            <img src="img3.png" alt="Third Slide" class="slide-image">
+        </div>
+        
+        <button id="prev-btn" class="carousel-btn prev-btn">&#10094;</button>
+        <button id="next-btn" class="carousel-btn next-btn">&#10095;</button>
+
+        <div class="carousel-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+
 
   <main id="app">
     <div class="back-button-container">
@@ -47,11 +93,11 @@
     <section class="route active" id="home" data-page="home">
         <div class="hero-copy">
           <h1 class="animate-in delay-1"><span class="stroke" ; >Anaajkart &nbsp;</span> <br> Kisan se seedha aap tak.🌿</h1>
-          <!-- <p class="animate-in delay-2">Taza phal aur sabzi, sidhe kisan se</p> -->
+
           <p class="animate-in delay-2">Gaon ka swad, aapke ghar</p>
 <div class="cta-buttons animate-in delay-3">
-  <button class="btn primary" onclick="Router.go('storeSearch')">Search product</button>
-  <button class="btn ghost" onclick="Router.go('gemini')">Ask Kisan AI Bot</button>
+  <a href="search.html" class="btn primary">Search product</a>
+  <a herf="ai.html" class="btn ghost">Ask Kisan AI Bot</a>
 </div>
 
           <ul class="badges animate-in delay-4">
@@ -91,24 +137,21 @@
       </section>
     </section>
 
-<section class="route" id="storeSearch" data-page="storeSearch">
+<!-- <section class="route" id="storeSearch" data-page="storeSearch">
   <h2 class="section-title animate-in">Search Products Across Stores</h2>
 
   <div class="search-bar animate-in delay-1">
     <input type="text" id="productSearchInput" placeholder="Search for a product...">
 
-    <!-- Camera Button -->
     <button class="scan-btn" title="Scan with Camera">
       <img src="camera.png" alt="Scan" />
     </button>
     <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none;">
 
-    <!-- Voice Button -->
     <button class="voice-btn" title="Voice Search">
       <img src="mice.png" alt="Mic" />
     </button>
 
-    <!-- Search Button -->
     <button id="productSearchBtn" title="Search">
       <img src="search.png" alt="Search" />
     </button>
@@ -209,7 +252,7 @@
       </form>
     </section>
 
-    <!-- <section class="route" id="delivery" data-page="delivery">
+    <section class="route" id="delivery" data-page="delivery">
       <form class="form glass animate-in" id="deliveryForm">
         <h2>Delivery Partner Registration</h2>
         <div class="split animate-in delay-1">
@@ -233,7 +276,7 @@
         <input type="text" name="city" required placeholder="enter city" class="animate-in delay-5" />
         <button class="btn primary animate-in delay-6" type="submit">Register as Delivery Partner</button>
       </form>
-    </section> -->
+    </section>
 
 <section class="route" id="store" data-page="store">
   <form class="form glass animate-in" id="storeForm">
@@ -269,21 +312,66 @@
         <div id="profileDetails" class="animate-in delay-1"></div>
         <button class="btn primary animate-in delay-2" id="logoutBtn">Logout</button>
       </div>
-    </section>
+    </section> -->
   </main>
+  
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-section footer-left">
+                <img src="anaajkartremovebg.png" alt="AnaajKart Logo" class="brand-logo">
+                <div class="fssai-info">
+                </div>
+            </div>
 
-  <footer class="footer">
-    <!-- <div class="social-icons">
-      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0.447-2.059 2-2.059h2V2.302S16.307 2 15.116 2c-3.216 0-5.327 1.944-5.327 5.56v2.536H6.192v4H9.79v8h4.21V13.5z"/></svg></a>
-      <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M22.46 6c-.85.38-1.76.64-2.72.76.98-.58 1.73-1.5 2.08-2.6-.92.55-1.95.95-3.05 1.17-.87-.93-2.1-1.5-3.5-1.5-2.65 0-4.8 2.15-4.8 4.8 0 .38.04.75.14 1.1-.92-.05-1.74-.24-2.58-.6-.85.38-1.76.64-2.72.76.98-.58 1.73-1.5 2.08-2.6-.92.55-1.95.95-3.05 1.17-.87-.93-2.1-1.5-3.5-1.5-2.65 0-4.8 2.15-4.8 4.8 0 .38.04.75.14 1.1-2.75-.4-5.2-1.9-6.9-4.2-.28.48-.44 1.05-.44 1.66 0 1.65.84 3.1 2.12 3.96-1.53-.05-2.97-.5-4.22-1.2v.06c0 2.32 1.65 4.25 3.84 4.68-.4.1-.8.15-1.2.15-.3 0-.6-.03-.9-.08.6 1.8 2.34 3.1 4.4 3.1-1.6 1.25-3.6 2-5.78 2-1.22 0-2.36-.07-3.48-.2.6 1.8 2.34 3.1 4.4 3.1 5.3 0 9.7-4.3 9.7-9.7 0-.15-.02-.3-.04-.45.67-.48 1.25-1.1 1.7-1.8z"/></svg></a>
-      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M12 2c-2.716 0-5.419.012-8.12.036C2.652 2.072 2.222 2.275 2.028 2.766 1.834 3.257 1.82 3.79 1.815 4.96c-.004 1.17-.008 2.34-.012 3.51-.004 1.17-.006 2.34-.006 3.51s.002 2.34.006 3.51c.004 1.17.008 2.34.012 3.51.005 1.17.019 1.703.213 2.194.194.49.624.693 1.112.72c2.7.024 5.401.036 8.102.036s5.401-.012 8.102-.036c.488-.027.918-.23 1.112-.72.194-.49.208-1.023.213-2.194.004-1.17.008-2.34.012-3.51.004-1.17.006-2.34.006-3.51s-.002-2.34-.006-3.51c-.004-1.17-.008-2.34-.012-3.51-.005-1.17-.019-1.703-.213-2.194-.194-.49-.624-.693-1.112-.72C17.419 2.012 14.716 2 12 2zm0 1.5c2.68 0 5.36.008 8.04.032.553.004.85.086 1.03.177.18.09.28.21.35.39.07.18.11.45.14.94.02 1.01.036 2.02.046 3.03.01 1.01.016 2.02.016 3.03s-.006 2.02-.016 3.03c-.01 1.01-.026 2.02-.046 3.03-.03 1.01-.07 1.49-.14.94-.07-.18-.17-.3-.35-.39-.18-.09-.47-.173-1.03-.177-2.68-.024-5.36-.032-8.04-.032s-5.36.008-8.04.032c-.56.004-.85.086-1.03.177-.18.09-.28.21-.35.39-.07.18-.11.45-.14.94-.02 1.01-.036 2.02-.046 3.03-.01 1.01-.016 2.02-.016 3.03s.006 2.02.016 3.03c.01 1.01.026 2.02.046 3.03.03 1.01.07 1.49.14.94.07-.18.17-.3.35-.39.18-.09.47-.173 1.03-.177C6.64 21.988 9.32 21.996 12 21.996zM12 7.75c-2.347 0-4.25 1.903-4.25 4.25s1.903 4.25 4.25 4.25 4.25-1.903 4.25-4.25-1.903-4.25-4.25-4.25zm0 1.5c1.517 0 2.75 1.233 2.75 2.75s-1.233 2.75-2.75 2.75-2.75-1.233-2.75-2.75 1.233-2.75 2.75-2.75zm6.5-4.25c-.718 0-1.3.582-1.3 1.3s.582 1.3 1.3 1.3 1.3-.582 1.3-1.3-.582-1.3-1.3-1.3z"/></svg></a>
-      <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.5 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13 12.268h-3v-5.604c0-3.368-4-3.04-4 0v5.604h-3v-11h3v1.765c1.39-2.527 6-2.762 6 2.095v7.14z"/></svg></a>
-    </div> -->
-    <p> Made by Team Jarvis++ <span id="year"></span> GreenDash </p>
-  </footer>
+            <div class="footer-section footer-center">
+                <div class="newsletter-signup">
+                    <div class="newsletter-header">
+                        <img src="anaajkartremovebg.png" alt="AnaajKart Icon" class="aashirvaad-icon">
+                        <p class="in-your-inbox">Gaon ka swad</p>
+                    </div>
+                    <form id="newsletter-form">
+                        <input type="email" id="email-input" placeholder="Enter Your Email ID" required>
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="privacy-checkbox" required>
+                            <label for="privacy-checkbox">By clicking "Register Now", you agree to the <a href="#" class="privacy-link">Privacy Policy</a> and to receive marketing emails from the AnaajKart community</label>
+                        </div>
+                        <button type="submit" class="register-btn">Register Now</button>
+                    </form>
+                </div>
+            </div>
 
-  <script src="https://unpkg.com/@google/generative-ai@0.8.0/dist/index.js"></script>
-  <script src="app.js"></script>
+            <div class="footer-section footer-right">
+                <ul class="footer-links">
+                    <li><a href="#">Terms of use</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                </ul>
+                <ul class="footer-links">
+                    <li><a href="#">Our Products</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+            <div class="bottom-bar-left">
+                <a href="#" class="itc-portal">AnaajKart Portal</a>
+                <span>© 2025 AnaajKart. All Rights Reserved.</span>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-x-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+<!-- 
+    <script src="script.js"></script> -->
 </body>
 </html>
 
+  <script src="app.js"></script>
+</body>
+</html>
