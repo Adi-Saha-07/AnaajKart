@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AnaajKart</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="light-mode">
+  <canvas id="bg"></canvas>
+  <header class="nav">
+    <div class="logo">
+      <img src="anaajkartremovebg.png" alt="Anaajkart Logo" class="leaf">
+      <span>Anaajkart</span>
+    </div>
+    <nav id="navbar">
+      <div class="nav-buttons">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">🌙</button>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+      </div>
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="login.html">Login</a>
+        <a href="signup.html">Sign Up</a>
+        <a href="store.html">Store Register</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+<section id="contact">
+  <form class="form glass">
+    <h2>Contact Us</h2>
+    <label>Full Name</label>
+    <input type="text" name="name" required placeholder="Your Name" />
+    <label>Email</label>
+    <input type="email" name="email" required placeholder="your.email@example.com" />
+    <label>Message</label>
+    <textarea name="message" rows="5" required placeholder="Your message..."></textarea>
+    <button class="btn primary" type="submit">Send Message</button>
+  </form>
+</section>
+  </main>
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-section footer-left">
+        <img src="anaajkartremovebg.png" alt="AnaajKart Logo" class="brand-logo">
+      </div>
+      <div class="footer-section footer-center">
+        <p>Gaon ka swad, aapke ghar</p>
+      </div>
+      <div class="footer-section footer-right">
+        <p>&copy; 2025 AnaajKart. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+<script src="app.js"></script>
+</html>
