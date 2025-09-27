@@ -2,17 +2,17 @@
 // SPA Router
 // ---------------------------
 const Router = {
-  currentPage: 'home',
+  // currentPage: 'home',
   go(page) {
-    document.querySelectorAll('.route').forEach(s => s.classList.remove('active'));
-    const target = document.querySelector(`[data-page="${page}"]`);
-    if (target) {
-      target.classList.add('active');
-      history.pushState({}, '', `#${page}`);
-      this.currentPage = page;
-      this.updateBackButton();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    // document.querySelectorAll('.route').forEach(s => s.classList.remove('active'));
+    // const target = document.querySelector(`[data-page="${page}"]`);
+    // if (target) {
+    //   target.classList.add('active');
+    //   history.pushState({}, '', `#${page}`);
+    //   this.currentPage = page;
+    //   this.updateBackButton();
+    //   window.scrollTo({ top: 0, behavior: 'smooth' });
+    // }
   },
   updateBackButton() {
     const backButton = document.querySelector('.back-button');
@@ -276,223 +276,87 @@ function toast(msg, danger = false) {
   }, 2300);
 }
 
-// // ---------------------------
-// // Store Search
-// // ---------------------------
-// const STORES = [
-//   { id: 1, name: 'Green Farm Noida 1', pincode: '201301' },
-//   { id: 2, name: 'Fresh Veggies Noida 2', pincode: '201301' },
-//   { id: 3, name: 'Organic Basket Noida 3', pincode: '201301' },
-//   { id: 4, name: 'Happy Farms Noida 4', pincode: '201301' },
-//   { id: 5, name: 'Green Earth Noida 5', pincode: '201301' },
-//   { id: 6, name: 'Farmers Delight Noida 6', pincode: '201301' },
-//   { id: 7, name: 'Delhi Fresh 1', pincode: '110001' },
-//   { id: 8, name: 'Delhi Organics 2', pincode: '110001' },
-//   { id: 9, name: 'Green Delhi 3', pincode: '110001' },
-//   { id: 10, name: 'Healthy Harvest Delhi 4', pincode: '110001' },
-//   { id: 11, name: 'Farm Delhi 5', pincode: '110001' },
-//   { id: 12, name: 'Organic Delhi 6', pincode: '110001' },
-//   { id: 13, name: 'Ghaziabad Greens 1', pincode: '201001' },
-//   { id: 14, name: 'Fresh Ghaziabad 2', pincode: '201001' },
-//   { id: 15, name: 'Organic Ghaziabad 3', pincode: '201001' },
-//   { id: 16, name: 'Healthy Farm Ghaziabad 4', pincode: '201001' },
-//   { id: 17, name: 'Green Basket Ghaziabad 5', pincode: '201001' },
-//   { id: 18, name: 'Farmers Choice Ghaziabad 6', pincode: '201001' },
-// ];
+// ---------------------------
+// Main Carousel
+// ---------------------------
+function setupMainCarousel() {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dots .dot');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
 
-function renderStores(pincode) {
-  const storeList = document.getElementById('storeList');
-  if (!storeList) return;
+    let currentSlide = 0;
 
-  if (!pincode) {
-    storeList.innerHTML = '<p>Please select a pincode to see stores.</p>';
-    return;
-  }
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        if (slides[index]) {
+            slides[index].classList.add('active');
+        }
+        if (dots[index]) {
+            dots[index].classList.add('active');
+        }
+    }
 
-  const filtered = STORES.filter(s => s.pincode === pincode);
-  if (!filtered.length) {
-    storeList.innerHTML = '<p>No stores found for this pincode.</p>';
-    return;
-  }
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
 
-  storeList.innerHTML = filtered.map(store => `
-    <div class="store-card">
-      <h3>${store.name}</h3>
-      <p>Pincode: ${store.pincode}</p>
-      <button onclick="alert('Visit ${store.name}')">Visit Store</button>
-    </div>
-  `).join('');
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+    
+    // Check if buttons exist before adding event listeners
+    if (nextBtn) {
+        nextBtn.addEventListener('click', nextSlide);
+    }
+    if (prevBtn) {
+        prevBtn.addEventListener('click', prevSlide);
+    }
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            currentSlide = index;
+            showSlide(currentSlide);
+        });
+    });
+
+    if (slides.length > 0) {
+        showSlide(currentSlide);
+    }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const pincodeSelect = document.getElementById('pincodeSelect');
-  if (pincodeSelect) {
-    pincodeSelect.addEventListener('change', () => renderStores(pincodeSelect.value));
-    renderStores(''); // initial message
-  }
-});
+// ---------------------------
+// Theme & Menu Toggle
+// ---------------------------
+function setupUI() {
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const menuToggleBtn = document.getElementById('menuToggle');
+    const navLinks = document.querySelector('#navbar .links');
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+    }
+
+    if (menuToggleBtn && navLinks) {
+        menuToggleBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+    }
+}
 
 // ---------------------------
-// Run on DOMContentLoaded
+// Init
 // ---------------------------
 document.addEventListener('DOMContentLoaded', () => {
-  particles();
   Router.init();
-  renderCatalog();
+  particles();
   setupForms();
   updateNavbar();
-  loadProfile();
-
-  const toggle = document.getElementById('menuToggle');
-  const links = document.querySelector('#navbar .links');
-  if (toggle && links) {
-    toggle.addEventListener('click', () => {
-      links.classList.toggle('show');
-      toggle.classList.toggle('open');
-    });
-  }
-});
-document.addEventListener('DOMContentLoaded', () => {
-  const productSearchInput = document.getElementById('productSearchInput');
-  const productSearchBtn = document.getElementById('productSearchBtn');
-  const productResults = document.getElementById('productResults');
-
-  // Mock products across multiple stores
-const ALL_PRODUCTS = [
-  { name: "Organic Tomato", specs: "1 kg, Freshly harvested", price: 60, farmer: "Ramesh Kumar", store: "Green Farm Noida 1", inStock: true },
-  { name: "Spinach", specs: "500 g, Organic", price: 40, farmer: "Sita Devi", store: "Green Farm Noida 1", inStock: true },
-  { name: "Tomato", specs: "1 kg, Farm fresh", price: 55, farmer: "Rahul Yadav", store: "Fresh Veggies Noida 2", inStock: false },
-  { name: "Potato", specs: "1 kg, Fresh", price: 35, farmer: "Amit Singh", store: "Happy Farms Noida 4", inStock: true },
-  { name: "Tomato", specs: "1 kg, Organic", price: 65, farmer: "Deepa Devi", store: "Delhi Fresh 1", inStock: true },
-  { name: "Spinach", specs: "500 g, Fresh", price: 38, farmer: "Sunil Kumar", store: "Delhi Organics 2", inStock: false },
-  { name: "Aloe Vera", specs: "1 plant, potted", price: 120, farmer: "Suresh Yadav", store: "Organic Ghaziabad 3", inStock: true },
-  { name: "Carrot", specs: "1 kg, Fresh", price: 50, farmer: "Neha Sharma", store: "Green Farm Noida 1", inStock: true },
-  { name: "Cucumber", specs: "1 kg, Organic", price: 45, farmer: "Rajesh Kumar", store: "Fresh Veggies Noida 2", inStock: true },
-  { name: "Capsicum", specs: "500 g, Fresh", price: 70, farmer: "Priya Singh", store: "Happy Farms Noida 4", inStock: false },
-  { name: "Lettuce", specs: "1 bunch, Organic", price: 30, farmer: "Manoj Yadav", store: "Green Earth Noida 5", inStock: true },
-  { name: "Cabbage", specs: "1 kg, Fresh", price: 35, farmer: "Sonia Devi", store: "Farmers Delight Noida 6", inStock: true },
-  { name: "Bell Pepper", specs: "500 g, Organic", price: 80, farmer: "Rakesh Kumar", store: "Delhi Fresh 1", inStock: true },
-  { name: "Broccoli", specs: "500 g, Fresh", price: 90, farmer: "Anita Devi", store: "Delhi Organics 2", inStock: false },
-  { name: "Cauliflower", specs: "1 kg, Organic", price: 55, farmer: "Vikas Sharma", store: "Green Delhi 3", inStock: true },
-  { name: "Mint Leaves", specs: "1 bunch, Fresh", price: 15, farmer: "Sunita Yadav", store: "Healthy Harvest Delhi 4", inStock: true },
-  { name: "Coriander", specs: "1 bunch, Organic", price: 20, farmer: "Rajesh Singh", store: "Farm Delhi 5", inStock: true },
-  { name: "Fenugreek", specs: "1 bunch, Fresh", price: 25, farmer: "Seema Devi", store: "Organic Delhi 6", inStock: false },
-  { name: "Basil", specs: "1 bunch, Organic", price: 30, farmer: "Ramesh Yadav", store: "Ghaziabad Greens 1", inStock: true },
-  { name: "Chilli", specs: "250 g, Fresh", price: 40, farmer: "Priya Sharma", store: "Fresh Ghaziabad 2", inStock: true },
-  { name: "Garlic", specs: "500 g, Organic", price: 60, farmer: "Anil Kumar", store: "Organic Ghaziabad 3", inStock: false },
-  { name: "Ginger", specs: "250 g, Fresh", price: 50, farmer: "Suman Devi", store: "Healthy Farm Ghaziabad 4", inStock: true },
-  { name: "Beetroot", specs: "1 kg, Organic", price: 45, farmer: "Ravi Kumar", store: "Green Basket Ghaziabad 5", inStock: true },
-  { name: "Pumpkin", specs: "1 kg, Fresh", price: 35, farmer: "Kavita Sharma", store: "Farmers Choice Ghaziabad 6", inStock: true },
-  { name: "Sweet Corn", specs: "2 pcs, Organic", price: 25, farmer: "Ankit Yadav", store: "Green Farm Noida 1", inStock: true },
-  { name: "Radish", specs: "500 g, Fresh", price: 20, farmer: "Priya Devi", store: "Fresh Veggies Noida 2", inStock: true },
-  { name: "Okra", specs: "500 g, Organic", price: 40, farmer: "Sunil Sharma", store: "Happy Farms Noida 4", inStock: false },
-  { name: "Brinjal", specs: "1 kg, Fresh", price: 45, farmer: "Ramesh Singh", store: "Green Earth Noida 5", inStock: true },
-  { name: "Snake Plant", specs: "1 plant, potted", price: 150, farmer: "Anita Devi", store: "Farmers Delight Noida 6", inStock: true },
-  { name: "Money Plant", specs: "1 plant, potted", price: 200, farmer: "Deepak Kumar", store: "Delhi Fresh 1", inStock: true },
-  { name: "Peace Lily", specs: "1 plant, potted", price: 180, farmer: "Sonia Sharma", store: "Delhi Organics 2", inStock: false },
-  { name: "Tulsi Plant", specs: "1 plant, potted", price: 120, farmer: "Rakesh Yadav", store: "Green Delhi 3", inStock: true },
-  { name: "Areca Palm", specs: "1 plant, potted", price: 250, farmer: "Sunita Devi", store: "Healthy Harvest Delhi 4", inStock: true },
-  { name: "Monstera", specs: "1 plant, potted", price: 300, farmer: "Rajesh Sharma", store: "Farm Delhi 5", inStock: true },
-  { name: "Cactus", specs: "1 plant, potted", price: 100, farmer: "Neha Yadav", store: "Organic Delhi 6", inStock: true },
-  // ... continue adding until 200 products
-];
-
-  function renderProducts(query) {
-    const q = query.trim().toLowerCase();
-    const filtered = ALL_PRODUCTS.filter(p => p.name.toLowerCase().includes(q));
-
-    if (filtered.length === 0) {
-      productResults.innerHTML = `<p>No products found for "${query}".</p>`;
-      return;
-    }
-
-    productResults.innerHTML = filtered.map(p => `
-      <div class="product-card">
-        <div class="product-details">
-          <h3>${p.name}</h3>
-          <p><strong>Specs:</strong> ${p.specs}</p>
-          <p><strong>Price:</strong> ₹${p.price}</p>
-          <p><strong>Farmer:</strong> ${p.farmer}</p>
-          <p><strong>Store:</strong> ${p.store}</p>
-          <p><strong>Status:</strong> ${p.inStock ? 'Available' : 'Out of Stock'}</p>
-        </div>
-        <div class="product-actions">
-          <button class="${p.inStock ? '' : 'disabled'}" ${p.inStock ? `onclick="alert('Bought ${p.name} from ${p.store}')"` : 'disabled'}>
-            Buy
-          </button>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  productSearchBtn.addEventListener('click', () => {
-    const query = productSearchInput.value;
-    if (!query) return;
-    renderProducts(query);
-  });
-
-  // Optional: search on Enter key
-  productSearchInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') productSearchBtn.click();
-  });
-});
-const input = document.getElementById("productSearchInput");
-  const results = document.getElementById("productResults");
-
-  // 🔍 Search button click
-  document.getElementById("productSearchBtn").addEventListener("click", () => {
-    const query = input.value.trim();
-    results.innerHTML = query ? `<p>Searching for: <b>${query}</b></p>` : `<p>Please enter a product name.</p>`;
-  });
-
-  // 🎤 Voice search
-  document.querySelector(".voice-btn").addEventListener("click", () => {
-    if (!("webkitSpeechRecognition" in window)) {
-      alert("Voice search not supported in this browser.");
-      return;
-    }
-    const recognition = new webkitSpeechRecognition();
-    recognition.lang = "en-IN"; // Hindi ke liye "hi-IN"
-    recognition.start();
-
-    recognition.onresult = (event) => {
-      const speech = event.results[0][0].transcript;
-      input.value = speech;
-      results.innerHTML = `<p>Voice Search: <b>${speech}</b></p>`;
-    };
-  });
-
-  // 📷 Camera button
-  document.querySelector(".scan-btn").addEventListener("click", () => {
-    document.getElementById("cameraInput").click();
-  });
-
-  document.getElementById("cameraInput").addEventListener("change", (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      results.innerHTML = `<p>Image selected: <b>${file.name}</b></p>`;
-    }
-  });
-  // 🌙 Theme Toggle
-const themeToggle = document.getElementById("themeToggle");
-const body = document.body;
-
-// Check saved mode
-if (localStorage.getItem("theme") === "dark") {
-  body.classList.add("dark-mode");
-} else {
-  body.classList.add("light-mode");
-}
-
-// Toggle on click
-themeToggle.addEventListener("click", () => {
-  if (body.classList.contains("dark-mode")) {
-    body.classList.replace("dark-mode", "light-mode");
-    localStorage.setItem("theme", "light");
-    themeToggle.textContent = "🌙";
-  } else {
-    body.classList.replace("light-mode", "dark-mode");
-    localStorage.setItem("theme", "dark");
-    themeToggle.textContent = "☀️";
-  }
+  setupMainCarousel();
+  setupUI();
 });
