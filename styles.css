@@ -2,8 +2,8 @@
   --bg: #10a95c;
   --fg: #e9fff3;
   --muted: #ffffff;
-  --brand: #ff0909;
-  --brand-2: #e48b05;
+  --brand: #ff0000;
+  --brand-2: #ff4d00;
   --glass: rgba(159, 101, 101, 0);
 }
 * {
@@ -43,6 +43,7 @@ body.dark-mode {
   background: var(--dark-bg);
   color: var(--dark-fg);
 } */
+ 
 #bg {
   position: fixed;
   inset: 0;
@@ -225,6 +226,7 @@ body.light-mode .back-button {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  text-align: center;
   font-size: 2.4rem;
 }
 .hero-copy p {
@@ -262,6 +264,15 @@ body.light-mode .back-button {
   padding: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
+.li {
+  color:rgb(24, 144, 20);
+}
+.li:hover {
+  color:#ff0000;
+}
+.form.glass .level .AX {
+  text-align: center;
+}
 .project {
   background: var(--glass);
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -297,6 +308,7 @@ body.light-mode .back-button {
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-top: 26px;
+  width: auto;
 }
 .card h3 {
   margin: 0 0 6px;
@@ -326,9 +338,9 @@ body.light-mode .back-button {
   width: 100%;
   padding: 12px 14px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--fg);
+  background: rgb(255, 255, 255);
+  border: 2px solid rgb(0, 0, 0);
+  color: rgb(34, 34, 34);
   outline: none;
   margin-bottom: 12px;
   transition: all 0.3s ease;
@@ -339,7 +351,7 @@ body.light-mode .back-button {
 .form select:focus,
 .form textarea:focus {
   border-color: var(--brand-2);
-  box-shadow: 0 0 0 2px rgba(89, 255, 167, 0.3);
+  box-shadow: 0 0 0 1px rgba(255, 0, 0, 0.33);
 }
 .split {
   display: grid;
@@ -361,6 +373,7 @@ body.light-mode .back-button {
   color: #fffffff5;
   text-decoration: none;
   text-align: center;
+  width: 100%;
   /* box-shadow: var(--shadow); */
 }
 /* body.light-mode .btn.primary {
@@ -413,21 +426,21 @@ body.light-mode .btn.ghost {
   opacity: 0;
   transform: translateX(20px);
 }
-.footer {
+/* .footer {
   width: 100%;
   margin-top: 50px;
   padding: 30px 20px;
   text-align: center;
   background-color: #393939f9;
-}
-body.light-mode .footer {
+} */
+/* body.light-mode .footer {
   width: 100%;
   margin-top: 50px;
   color:white;
   padding: 30px 20px;
   text-align: center;
   background-color: #051b2df9;
-}
+} */
 
 .footer p {
   margin: 10px 0 0;
@@ -1170,7 +1183,7 @@ body.light-mode .nav {
 }
 
 body.light-mode .form.glass {
-  background: rgba(148, 141, 141, 0.8);
+  background: rgba(255, 255, 255, 0.819);
   color: #222222;
 }
 body.light-mode .project {
@@ -1190,11 +1203,11 @@ body.dark-mode .nav {
 }
 
 body.dark-mode .form.glass {
-  background: rgba(30,30,30,0.8);
+  background: rgba(255, 255, 255, 0.055);
   color: #f1f1f1;
 }
 body.dark-mode .project {
-  background-color: #99b0ba26;
+  background-color: #9cb7c315;
   color:white;
 }
 
@@ -1246,12 +1259,6 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* .footer-section {
-    flex: 1;
-    min-width: 250px;
-    margin: 20px;
-} */
-
 /* --- Left Section (Logo & FSSAI) --- */
 .footer-left {
     display: flex;
@@ -1279,6 +1286,7 @@ body {
     font-size: 14px;
 }
 
+
 /* --- Center Section (Newsletter) --- */
 .footer-center {
     display: flex;
@@ -1300,8 +1308,8 @@ body {
     margin-bottom: 15px;
 }
 
-.aashirvaad-icon { /* Renamed for general use but keeps original class */
-    height: 70px; /* Adjusted height for the small icon */
+.aashirvaad-icon { 
+    height: 70px; 
     margin-right: 5px;
     object-fit: contain;
 }
@@ -1632,5 +1640,19 @@ body {
 
     .carousel-dots {
         bottom: 10px; /* Move dots up slightly */
+    }
+}
+.hh {
+  color: #ff000d;
+}
+
+/* styles.css mein add karein */
+@media (max-width: 768px) {
+    #navbar .links {
+        display: none; /* Default hidden on mobile */
+    }
+    #navbar .links.nav-open {
+        display: flex; /* Show when 'nav-open' class is applied */
+        /* Add styling for full-screen or dropdown menu */
     }
 }
