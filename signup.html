@@ -27,30 +27,38 @@
 
   <div class="links">
     <a href="index.html" data-route="home">Home</a>
-    <a href="about.html" data-route="about">About Us</a>
-    <a href="contact.html" data-route="contact">Contact</a>
+    <!-- <a href="about.html" data-route="about">About Us</a>
+    <a href="contact.html" data-route="contact">Contact</a> -->
     <a href="login.html" data-route="login" class="guestOnly">Login</a>
     <a href="signup.html" data-route="signup" class="guestOnly">Sign Up</a>
     <a href="store.html" data-route="store" class="guestOnly">Store Register</a>
-    <a href="profile.html" data-route="profile" class="authOnly" style="display:none;">Profile</a>
+    <!-- <a href="profile.html" data-route="profile" class="authOnly" style="display:none;">Profile</a> -->
   </div>
 </nav>
 
   </header>
   <main>
 <section id="signup">
-  <form class="form glass">
-    <h2>Create Account</h2>
-    <label>Full Name</label>
-    <input type="text" name="name" required placeholder="Enter your name" />
-    <label>Phone</label>
-    <input type="tel" name="phone" required placeholder="+91 9XXXXXXXXX" />
-    <label>Email</label>
-    <input type="email" name="email" required placeholder="Enter email" />
-    <label>Password</label>
-    <input type="password" name="password" required placeholder="Min 6 characters" />
-    <button class="btn primary" type="submit">Sign Up</button>
-  </form>
+ <form class="form glass" id="signupForm">
+  <h2>Create Account</h2>
+
+  <label>Full Name</label>
+  <input type="text" name="name" required placeholder="Enter your name" />
+
+  <label>Phone</label>
+  <input type="tel" name="phone" required placeholder="+91 9XXXXXXXXX" />
+
+  <label>Email</label>
+  <input type="email" name="email" required placeholder="Enter email" />
+
+  <label>Password</label>
+  <input type="password" name="password" required minlength="6" placeholder="Min 6 characters" />
+
+  <button type="submit" id="loginBtn" class="btn primary" disabled>Sign in</button><br><br>
+
+  <label>You don't have account? <a href="login.html" class="li">login</a></label>
+</form>
+
 </section>
   </main>
     <footer class="main-footer">
@@ -109,7 +117,30 @@
     <script src="script.js"></script> -->
 </body>
 </html>
+<script>
+  const form = document.getElementById("signupForm");
+  const inputs = form.querySelectorAll("input[required]");
+  const btn = document.getElementById("loginBtn");
 
+  // Enable button only if all inputs are valid
+  inputs.forEach(input => {
+    input.addEventListener("input", () => {
+      let allFilled = true;
+      inputs.forEach(field => {
+        if (!field.checkValidity()) {
+          allFilled = false;
+        }
+      });
+      btn.disabled = !allFilled;
+    });
+  });
+
+  // Redirect on submit
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // stop actual form submission
+    window.location.href = "index2.html"; // redirect
+  });
+</script>
   <script src="app.js"></script>
 </body>
 </html>
