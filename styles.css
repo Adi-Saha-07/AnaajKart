@@ -1656,3 +1656,62 @@ body {
         /* Add styling for full-screen or dropdown menu */
     }
 }
+
+
+/* extra */
+   /* Responsive Video Container-er jonne (Aage dewa code) */
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; 
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.about-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    border-radius: 8px;
+}
+
+/* ---------------------------------------------------- */
+
+/* About Section-ke 100% width-e adjust korar jonne notun code */
+.about-section {
+    /* "form glass" class-er style-gulo change korte pare, 
+       kintu max-width set korle about section-ti choura hobe. */
+    width: 90%; /* Center-e rakhar jonne du-pashe 5% margin chhara holo */
+    max-width: 1200px; /* PC-te maximum koto choura hobe, beshir bhag khetre eta bhalo lage */
+    margin-left: auto; /* Center-e anar jonne */
+    margin-right: auto; /* Center-e anar jonne */
+    padding: 40px; /* Bhitorer jaiga baranor jonne */
+}
+
+/* Media Query: Choto device-er jonne (jemon mobile) width adjust kora holo */
+@media (max-width: 768px) {
+    .about-section {
+        width: 95%; /* Choto screen-e beshi jaiga newar jonne */
+        max-width: none; /* Maximum width-er constraint soriye dewa holo */
+        padding: 20px; /* Padding komiye dewa holo */
+    }
+}
+
+
+/* Optional: About section-er content-er style-gulo */
+.about-section ul {
+    list-style: disc; 
+    margin-left: 20px;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.about-section li {
+    margin-bottom: 8px;
+}
+
